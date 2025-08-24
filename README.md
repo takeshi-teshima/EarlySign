@@ -84,3 +84,8 @@ Internally, the object-oriented API is a wrapper around the functional-programmi
 For detailed usage and available methods, see the [docs](docs/).
 
 You can also find useful tutorial [here](docs/tutorials).
+
+### References
+- [R `'gsDesign'` package](https://cran.r-project.org/web/packages/gsDesign/index.html)
+- [Stata 19 Adaptive Designs](https://www.stata.com/bookstore/adaptive-designs-reference-manual/)
+- [R `'safestats'` package](https://cran.r-project.org/web/packages/safestats/safestats.pdf)
