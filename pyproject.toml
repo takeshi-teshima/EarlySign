@@ -31,3 +31,4 @@ priority = "explicit"
 [tool.dynamic-versioning]
 # Enable the plugin to derive the package version from Git metadata (tags) at build time.
 enable = true
+style = "pep440"
