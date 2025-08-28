@@ -14,6 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        # need full history so tags are available to the runner
+        fetch-depth: 0
 
     - name: Install uv
       run: pip install uv
@@ -22,6 +25,8 @@ jobs:
       run: |
         uv venv
         uv pip install poetry
+        # Install poetry-dynamic-versioning plugin so Poetry derives the version from Git tags
+        uv pip install poetry-dynamic-versioning
 
     - name: Build package
       run: |

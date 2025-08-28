@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "earlysign"
-version = "0.1.0"
+version = "0.0.0" # version is dynamically provided by poetry-dynamic-versioning during builds
 description = "Early signs, faster decisions. A Python library for sequential/safe testing (alpha-spending, e-processes, etc.)."
 authors = ["Takeshi Teshima <takeshi.78.teshima@gmail.com>"]
 readme = "README.md"
@@ -27,3 +27,7 @@ build-backend = "poetry.core.masonry.api"
 name = "testpypi"
 url = "https://test.pypi.org/legacy/"
 priority = "explicit"
+
+[tool.dynamic-versioning]
+# Enable the plugin to derive the package version from Git metadata (tags) at build time.
+enable = true
