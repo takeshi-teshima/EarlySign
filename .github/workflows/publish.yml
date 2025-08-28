@@ -30,6 +30,7 @@ jobs:
     - name: Build package
       run: |
         source .venv/bin/activate
+        poetry install --with ci
         poetry build
 
     - name: Publish to PyPI or TestPyPI

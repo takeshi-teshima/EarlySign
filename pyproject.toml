@@ -18,6 +18,9 @@ optional = true
 numpy = ">=1.24"
 matplotlib = ">=3.7"
 
+[tool.poetry.group.ci.dependencies]
+poetry-dynamic-versioning = "^1.0.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
