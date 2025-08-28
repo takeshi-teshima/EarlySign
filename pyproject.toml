@@ -36,4 +36,11 @@ priority = "explicit"
 enable = true
 vcs = "git" # Use Git for versioning
 style = "pep440" # PEP 440 compliant versioning style
-format-jinja = "{{ base }}" # Remove the "+..." local version part to avoid PyPI error
+# Remove the "+..." local version part to avoid PyPI error
+format-jinja = """
+{%- if distance == 0 -%}
+    {{ base }}
+{%- else -%}
+    {{ base }}.post{{ distance }}
+{%- endif -%}
+"""
