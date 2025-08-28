@@ -9,11 +9,9 @@ on:
 
 jobs:
   publish:
-    # Dynamically select the environment based on the trigger
     environment: ${{ github.event_name == 'release' && 'pypi' || 'testpypi' }}
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write # Required for OIDC
+    # OIDC permissions are removed as we are now using tokens
 
     steps:
     - uses: actions/checkout@v4
@@ -26,25 +24,18 @@ jobs:
         uv venv
         uv pip install poetry
         source .venv/bin/activate
-        echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-
-    - name: Configure Poetry for TestPyPI
-      # Run only when pushing to a branch
-      if: github.event_name == 'push'
-      env:
-        # Read the secret from the testpypi environment
-        TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
-      run: poetry config pypi-token.testpypi $TEST_PYPI_API_TOKEN
+        echo "$VVIRTUAL_ENV/bin" >> $GITHUB_PATH
 
     - name: Build package
       run: poetry build
 
-    - name: Publish to TestPyPI
-      # Run only when pushing to the main branch
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: poetry publish -r testpypi
-
-    - name: Publish to PyPI
-      # Run only when a release is created
-      if: github.event_name == 'release'
-      run: poetry publish
+    - name: Publish to PyPI or TestPyPI
+      env:
+        TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        if [ "${{ github.event_name }}" == "release" ]; then
+          poetry publish --username __token__ --password $PYPI_API_TOKEN
+        else
+          poetry publish -r testpypi --username __token__ --password $TEST_PYPI_API_TOKEN
+        fi
