@@ -36,3 +36,4 @@ priority = "explicit"
 enable = true
 vcs = "git" # Use Git for versioning
 style = "pep440" # PEP 440 compliant versioning style
+format-jinja = "{{ base }}" # Remove the "+..." local version part to avoid PyPI error
