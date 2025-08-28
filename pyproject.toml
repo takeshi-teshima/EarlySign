@@ -11,6 +11,13 @@ repository = "https://github.com/takeshi-teshima/EarlySign"
 [tool.poetry.dependencies]
 python = ">=3.11"
 
+[tool.poetry.group.examples]
+optional = true
+
+[tool.poetry.group.examples.dependencies]
+numpy = ">=1.24"
+matplotlib = ">=3.7"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -20,16 +27,3 @@ build-backend = "poetry.core.masonry.api"
 name = "testpypi"
 url = "https://test.pypi.org/legacy/"
 priority = "explicit"
-
-[project.optional-dependencies]
-# Dependencies required only for running the example plotting scripts / development
-# Install with: pip install .[examples]
-examples = [
-	"numpy>=1.24",
-	"matplotlib>=3.7",
-]
-
-[tool.uv.dev-dependencies]
-# Development-only dependencies for uv (used when developing / running examples)
-numpy = ">=1.24"
-matplotlib = ">=3.7"
