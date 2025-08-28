@@ -9,7 +9,7 @@ homepage = "https://github.com/takeshi-teshima/EarlySign"
 repository = "https://github.com/takeshi-teshima/EarlySign"
 
 [tool.poetry.dependencies]
-python = ">=3.11"
+python = ">=3.11,<4.0"
 
 [tool.poetry.group.examples]
 optional = true
@@ -19,7 +19,7 @@ numpy = ">=1.24"
 matplotlib = ">=3.7"
 
 [tool.poetry.group.ci.dependencies]
-poetry-dynamic-versioning = "^1.0.0"
+poetry-dynamic-versioning = "^1.9.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
