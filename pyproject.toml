@@ -1,10 +1,25 @@
 [project]
 name = "earlysign"
 version = "0.1.0"
+authors = [
+  { name="Takeshi Teshima", email="takeshi.78.teshima@gmail.com" },
+]
 description = "Early signs, faster decisions. A Python library for sequential/safe testing (alpha-spending, e-processes, etc.)."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.urls]
+"Homepage" = "https://github.com/takeshi-teshima/EarlySign"
+"Bug Tracker" = "https://github.com/takeshi-teshima/EarlySign/issues"
 
 [project.optional-dependencies]
 # Dependencies required only for running the example plotting scripts / development

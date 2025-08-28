@@ -1,3 +1,6 @@
+![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
+![Release](https://img.shields.io/badge/v1.0%20release-end%20of%202025-blue)
+
 # EarlySign
 
 <center>
@@ -13,6 +16,7 @@ EarlySign is a Python library for sequential/safe testing (alpha-spending, e-pro
     - By using alpha-spending functions to control the overall Type I error rate, you can stop early for efficacy or futility, making your experiments more efficient without compromising statistical integrity. This approach allows for a pre-specified number of interim analyses during an experiment.
 1. e-processes for anytime-valid inference
     - It allows you to continuously monitor your experiments and make decisions as soon as the evidence is strong enough, without waiting for a predetermined sample size. This can lead to faster conclusions, saving time and resources, while maintaining statistical rigor.
+
 
 ## Install
 
@@ -87,5 +91,22 @@ You can also find useful tutorial [here](docs/tutorials).
 
 ### References
 - [R `'gsDesign'` package](https://cran.r-project.org/web/packages/gsDesign/index.html)
+- [R `'gsDesign'` Technical Manual](https://keaven.github.io/gsd-tech-manual/)
 - [Stata 19 Adaptive Designs](https://www.stata.com/bookstore/adaptive-designs-reference-manual/)
 - [R `'safestats'` package](https://cran.r-project.org/web/packages/safestats/safestats.pdf)
+
+### Initial TODO
+- どんな統計量を使いたいか（これによってどんなデータを受け取れるかが変わる）
+  - Wald's Z
+  - Bernoulli two proportions
+- どんなシグナルを使いたいか（どんな決定領域定義を使うかも選択）
+  - GroupSequentialFutilitySignal(criterion=AsymptoticNormalBoundary())
+  - AnytimeValidEValueSignal(alpha)
+- 実験プロセスを流す機能
+- 実験の途中経過をレポートする機能
+- 上記の設定を設定ファイルから行える
+- 上記の途中経過を保存・再開できる
+- 既存パッケージのAPIを解析して，パラメーター類を分配
+- 既存パッケージのユースケースを調べて，内容とは別にまずAPIを定義付けていく
+- ExperimentBuilderを実装して，実験設計のプロセスを支援する
+- PyPI
