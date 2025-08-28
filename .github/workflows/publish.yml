@@ -24,9 +24,9 @@ jobs:
     - name: Set up Python and install Poetry
       run: |
         uv venv
-        uv pip install poetry
-        # Install poetry-dynamic-versioning plugin so Poetry derives the version from Git tags
-        uv pip install poetry-dynamic-versioning
+        source .venv/bin/activate
+        pip install poetry
+        poetry self add poetry-dynamic-versioning
 
     - name: Build package
       run: |
