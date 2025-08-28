@@ -11,7 +11,6 @@ jobs:
   publish:
     environment: ${{ github.event_name == 'release' && 'pypi' || 'testpypi' }}
     runs-on: ubuntu-latest
-    # OIDC permissions are removed as we are now using tokens
 
     steps:
     - uses: actions/checkout@v4
@@ -23,17 +22,18 @@ jobs:
       run: |
         uv venv
         uv pip install poetry
-        source .venv/bin/activate
-        echo "$VVIRTUAL_ENV/bin" >> $GITHUB_PATH
 
     - name: Build package
-      run: poetry build
+      run: |
+        source .venv/bin/activate
+        poetry build
 
     - name: Publish to PyPI or TestPyPI
       env:
         TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
         PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
       run: |
+        source .venv/bin/activate
         if [ "${{ github.event_name }}" == "release" ]; then
           poetry publish --username __token__ --password $PYPI_API_TOKEN
         else
