@@ -1,25 +1,26 @@
-[project]
+[tool.poetry]
 name = "earlysign"
 version = "0.1.0"
-authors = [
-  { name="Takeshi Teshima", email="takeshi.78.teshima@gmail.com" },
-]
 description = "Early signs, faster decisions. A Python library for sequential/safe testing (alpha-spending, e-processes, etc.)."
+authors = ["Takeshi Teshima <takeshi.78.teshima@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.11"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
+license = "Apache-2.0"
+homepage = "https://github.com/takeshi-teshima/EarlySign"
+repository = "https://github.com/takeshi-teshima/EarlySign"
+bug-tracker = "https://github.com/takeshi-teshima/EarlySign/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.11"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
-[project.urls]
-"Homepage" = "https://github.com/takeshi-teshima/EarlySign"
-"Bug Tracker" = "https://github.com/takeshi-teshima/EarlySign/issues"
+# Simplify publishing to TestPyPI
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/legacy/"
+priority = "explicit"
 
 [project.optional-dependencies]
 # Dependencies required only for running the example plotting scripts / development
