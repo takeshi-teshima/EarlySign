@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "earlysign"
+version = "0.1.0"
+description = "Early signs, faster decisions. A Python library for sequential/safe testing (alpha-spending, e-processes, etc.)."
+authors = ["Takeshi Teshima <takeshi.78.teshima@gmail.com>"]
+readme = "README.md"
+license = "Apache-2.0"
+homepage = "https://github.com/takeshi-teshima/EarlySign"
+repository = "https://github.com/takeshi-teshima/EarlySign"
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Simplify publishing to TestPyPI
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/legacy/"
+priority = "explicit"
+
+[project.optional-dependencies]
+# Dependencies required only for running the example plotting scripts / development
+# Install with: pip install .[examples]
+examples = [
+	"numpy>=1.24",
+	"matplotlib>=3.7",
+]
+
+[tool.uv.dev-dependencies]
+# Development-only dependencies for uv (used when developing / running examples)
+numpy = ">=1.24"
+matplotlib = ">=3.7"
