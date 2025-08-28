@@ -1,3 +1,5 @@
+[![PyPI version](https://img.shields.io/pypi/v/earlysign.svg)](https://pypi.org/project/earlysign/)
+
 ![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 ![Release](https://img.shields.io/badge/v1.0%20release-end%20of%202025-blue)
 
