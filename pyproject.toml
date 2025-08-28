@@ -19,8 +19,8 @@ numpy = ">=1.24"
 matplotlib = ">=3.7"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
 
 # Simplify publishing to TestPyPI
 [[tool.poetry.source]]
@@ -31,4 +31,5 @@ priority = "explicit"
 [tool.dynamic-versioning]
 # Enable the plugin to derive the package version from Git metadata (tags) at build time.
 enable = true
-style = "pep440"
+vcs = "git" # Use Git for versioning
+style = "pep440" # PEP 440 compliant versioning style
