@@ -31,7 +31,7 @@ name = "testpypi"
 url = "https://test.pypi.org/legacy/"
 priority = "explicit"
 
-[tool.dynamic-versioning]
+[tool.poetry-dynamic-versioning]
 # Enable the plugin to derive the package version from Git metadata (tags) at build time.
 enable = true
 vcs = "git" # Use Git for versioning
