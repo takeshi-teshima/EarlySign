@@ -1,2 +1,112 @@
+![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
+![Release](https://img.shields.io/badge/v1.0%20release-end%20of%202025-blue)
+
 # EarlySign
-Early signs, faster decisions. A Python library for sequential/safe testing (alpha-spending, e-processes, etc.).
+
+<center>
+<img src="./docs/logo.png" width="50%"><br/>
+Early signs, faster decisions.
+</center>
+
+## What is this?
+
+EarlySign is a Python library for sequential/safe testing (alpha-spending, e-processes, etc.).
+
+1. Group sequential tests for interim analysis
+    - By using alpha-spending functions to control the overall Type I error rate, you can stop early for efficacy or futility, making your experiments more efficient without compromising statistical integrity. This approach allows for a pre-specified number of interim analyses during an experiment.
+1. e-processes for anytime-valid inference
+    - It allows you to continuously monitor your experiments and make decisions as soon as the evidence is strong enough, without waiting for a predetermined sample size. This can lead to faster conclusions, saving time and resources, while maintaining statistical rigor.
+
+
+## Install
+
+```
+pip install earlysign
+```
+
+## Usage
+
+This library supports the following steps in your experimentation.
+
+1. Planning / Designing
+1. Executing / Analyzing
+1. Reporting / Visualizing
+1. (optionally) Educating
+
+### Overview
+
+```python
+from earlysign import designs
+
+##################
+# Planning phase #
+##################
+# A) assisted planning
+design = designs.GroupSequential.from_power_analysis(
+    mde=0.01,
+    power=0.8,
+    alpha=0.05,
+    outcome_type="binary",
+    num_interims=4 # analyze 4 times
+)
+
+# B) or... manually specify your experimental design
+design = designs.GroupSequential(
+    name="example-run", variants=["A", "B"],
+    outcome_type="binary",
+    alpha_spending_fn="obrien-fleming",
+    max_batches=1000,
+    alpha=0.05,
+    efficacy=True, futility=False
+)
+
+###################
+# Execution phase #
+###################
+# 1) execute the experiment in object-oriented style
+from earlysign import Experiment
+experiment = Experiment(design)  # stateful experiment object
+experiment.initialize()          # init state
+experiment.update(observation_1) # first batch of data
+experiment.update(observation_2) # second batch of data
+experiment.conclude()            # form the best advice with the current state
+report = experiment.report()     # generate a report
+
+# 2) or in functional style if you prefer
+from earlysign import handlers
+handler = handlers.get_handler(design)        # design-specific handler
+state = handler.initial_state()              # {} -> State
+state = handler.update(state, observation_1) # (Design, State, Obs) -> State
+state = handler.update(state, observation_2) # (Design, State, Obs) -> State
+conclusion = handler.conclude(state)         # (State) -> Conclusion
+report = handlers.get_reporter(design).report(conclusion) # Conclusion -> Report
+```
+
+Internally, the object-oriented API is a wrapper around the functional-programming API.
+
+### Documentation
+For detailed usage and available methods, see the [docs](docs/).
+
+You can also find useful tutorial [here](docs/tutorials).
+
+### References
+- [R `'gsDesign'` package](https://cran.r-project.org/web/packages/gsDesign/index.html)
+- [R `'gsDesign'` Technical Manual](https://keaven.github.io/gsd-tech-manual/)
+- [Stata 19 Adaptive Designs](https://www.stata.com/bookstore/adaptive-designs-reference-manual/)
+- [R `'safestats'` package](https://cran.r-project.org/web/packages/safestats/safestats.pdf)
+
+### Initial TODO
+- どんな統計量を使いたいか（これによってどんなデータを受け取れるかが変わる）
+  - Wald's Z
+  - Bernoulli two proportions
+- どんなシグナルを使いたいか（どんな決定領域定義を使うかも選択）
+  - GroupSequentialFutilitySignal(criterion=AsymptoticNormalBoundary())
+  - AnytimeValidEValueSignal(alpha)
+- 実験プロセスを流す機能
+- 実験の途中経過をレポートする機能
+- 上記の設定を設定ファイルから行える
+- 上記の途中経過を保存・再開できる
+- 既存パッケージのAPIを解析して，パラメーター類を分配
+- 既存パッケージのユースケースを調べて，内容とは別にまずAPIを定義付けていく
+- ExperimentBuilderを実装して，実験設計のプロセスを支援する
+- PyPI
