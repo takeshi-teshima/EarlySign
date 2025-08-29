@@ -6,7 +6,7 @@
 # EarlySign
 
 <center>
-<img src="https://github.com/takeshi-teshima/EarlySign/blob/main/docs/logo.png" width="50%"><br/>
+<img src="https://raw.githubusercontent.com/takeshi-teshima/EarlySign/refs/heads/main/docs/logo.png" width="50%"><br/>
 Early signs, faster decisions.
 </center>
 
