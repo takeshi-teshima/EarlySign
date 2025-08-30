@@ -37,7 +37,7 @@ mypy = "^1.17.1"
 line-length = 88
 target-version = ["py311"]
 exclude = '''
-/(\.|venv|\.venv|\.git|\.mypy_cache|\.pytest_cache|build|dist|\.venv)/
+/(\.|venv|\.venv|\.git|\.mypy_cache|\.pytest_cache|build|dist|\.venv|\.poetry)/
 '''
 
 [tool.mypy]
