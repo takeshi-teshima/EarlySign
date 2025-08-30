@@ -34,6 +34,10 @@ black = "^25.1.0" # Formatting
 ## Docs
 sphinx = "^8.2.3"
 sphinx-book-theme = "1.1.4"
+myst-parser = "^4.0.1"
+sphinx-autodoc-typehints = "^3.2.0"
+sphinx-copybutton = "^0.5.2"
+sphinx-autobuild = "^2025.8.25"
 
 [tool.poetry.group.ci.dependencies]
 pytest = "^8.4.1"
