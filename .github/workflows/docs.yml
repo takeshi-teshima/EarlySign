@@ -36,16 +36,16 @@ jobs:
             mkdir -p docs/source
             sphinx-apidoc -o docs/source earlysign || true
             cat > docs/source/conf.py <<'PY'
-import os
-import sys
-sys.path.insert(0, os.path.abspath('../..'))
+          import os
+          import sys
+          sys.path.insert(0, os.path.abspath('../..'))
 
-project = 'EarlySign'
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx_autodoc_typehints']
-templates_path = ['_templates']
-exclude_patterns = []
-html_theme = 'pydata_sphinx_theme'
-PY
+          project = 'EarlySign'
+          extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx_autodoc_typehints']
+          templates_path = ['_templates']
+          exclude_patterns = []
+          html_theme = 'pydata_sphinx_theme'
+          PY
           fi
 
       - name: Build HTML
