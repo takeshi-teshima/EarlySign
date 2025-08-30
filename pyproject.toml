@@ -28,8 +28,6 @@ pudb = "^2025.1"
 pytest = "^8.4.1"
 black = "^25.1.0"
 mypy = "^1.17.1"
-numpy = "^2.3.2"
-scipy = "^1.11.2"
 
 #==== Test tools ====#
 [tool.black]
@@ -79,10 +77,4 @@ enable = true
 vcs = "git" # Use Git for versioning
 style = "pep440" # PEP 440 compliant versioning style
 # Remove the "+..." local version part to avoid PyPI error
-format-jinja = """
-{%- if distance == 0 -%}
-    {{ base }}
-{%- else -%}
-    {{ base }}.post{{ distance }}
-{%- endif -%}
-"""
+format-jinja = "{%- if distance == 0 -%}{{ base }}{%- else -%}{{ base }}.post{{ distance }}{%- endif -%}"
