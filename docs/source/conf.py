@@ -23,7 +23,7 @@ exclude_patterns = []
 # dependency is being added via Poetry).
 try:
     import importlib
-
+    import importlib.util
     if importlib.util.find_spec("sphinx_book_theme") is not None:
         html_theme = "sphinx_book_theme"
         html_theme_options = {
@@ -33,13 +33,14 @@ try:
             "path_to_docs": "docs/source",
         }
     else:
-        # Fallback to a simple built-in theme that ships with Sphinx
         html_theme = "alabaster"
         html_theme_options = {}
 except Exception:
     html_theme = "alabaster"
     html_theme_options = {}
 
+
+# ロゴ画像とCSSの設定（グローバル）
 # myst config: enable useful parsing extensions for notebook-style content
 myst_enable_extensions = [
     "deflist",
@@ -49,3 +50,10 @@ myst_enable_extensions = [
 ]
 
 master_doc = "index"
+
+# Static assets and logo: place a logo image at docs/logo.png (project root)
+# and reference it here so it appears in the top-left of the generated site.
+# Use an absolute path to the repository-level docs/logo.png so Sphinx can
+# include it even though it's outside docs/source/_static.
+html_static_path = ['_static']
+html_logo = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logo.png"))
