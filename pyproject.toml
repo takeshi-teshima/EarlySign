@@ -8,6 +8,9 @@ license = "Apache-2.0"
 homepage = "https://github.com/takeshi-teshima/EarlySign"
 repository = "https://github.com/takeshi-teshima/EarlySign"
 
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+
 #==== Main repo dependencies ====#
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
@@ -58,7 +61,6 @@ norecursedirs = ["docs"]
 
 #==== CI ====#
 [tool.poetry.group.ci.dependencies]
-poetry-dynamic-versioning = "^1.9.1"
 pytest = "^8.4.1"
 
 [build-system]
