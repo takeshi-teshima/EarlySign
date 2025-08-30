@@ -71,7 +71,7 @@ except Exception:
 
     norm = _Norm()
 
-from earlysign.core._types import (
+from earlysign.core.interface import (
     ConditionState,
     Condition,
     Stateful,

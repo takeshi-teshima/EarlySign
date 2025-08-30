@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Callable, Mapping, Any, Dict
 
-from earlysign.core._types import (
+from earlysign.core.interface import (
     ExperimentDesign,
     ExperimentDesigner,
     StateRepository,

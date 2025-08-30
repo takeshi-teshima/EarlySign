@@ -1,4 +1,4 @@
-from earlysign.core._types import (
+from earlysign.core.interface import (
     T_Time,
     T_Observation,
     T_StatisticValue,

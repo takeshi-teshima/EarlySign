@@ -1,6 +1,6 @@
 from typing import Tuple, List, Optional, Sequence, Any
 import math
-from earlysign.core._types import SequentialStatistic, StatisticState, Stateful
+from earlysign.core.interface import SequentialStatistic, StatisticState, Stateful
 
 MeanObservation = Tuple[float, float]  # (群1の観測値, 群2の観測値)
 

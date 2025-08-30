@@ -1,7 +1,7 @@
 """Reporter utilities.
 
 Example (doctest):
->>> from earlysign.core._types import SignalEvent, Signal, Recommendation
+>>> from earlysign.core.interface import SignalEvent, Signal, Recommendation
 >>> from earlysign.core.reporter import Reporter
 >>> e = SignalEvent(time=1, condition_name='c1', signal=Signal.CONDITION_MET)
 >>> r = Reporter([e])
@@ -11,7 +11,7 @@ True
 True
 """
 
-from earlysign.core._types import SignalEvent, Recommendation, Signal
+from earlysign.core.interface import SignalEvent, Recommendation, Signal
 
 
 class Reporter:

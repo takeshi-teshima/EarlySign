@@ -1,5 +1,5 @@
 from typing import Tuple, List, Optional, Sequence, Any
-from earlysign.core._types import SequentialStatistic, StatisticState, Stateful
+from earlysign.core.interface import SequentialStatistic, StatisticState, Stateful
 
 ProportionObservation = Tuple[int, int]  # (群1の成功(1/0), 群2の成功(1/0))
 
