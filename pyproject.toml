@@ -30,7 +30,7 @@ ipython = "^9.5.0" # Debugging
 pudb = "^2025.1" # Debugging
 pytest = "^8.4.1" # Tests
 mypy = "^1.17.1" # Type validation
-black = "^25.1.0" # Formatting
+black = {extras = ["jupyter"], version = "^25.1.0"} # Formatting
 ## Docs
 sphinx = "^8.2.3"
 sphinx-book-theme = "1.1.4"
