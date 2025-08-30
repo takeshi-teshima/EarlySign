@@ -1,6 +1,3 @@
-
-SHELL := /bin/zsh
-
 .PHONY: install lint type test check format
 
 install:
