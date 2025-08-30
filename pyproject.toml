@@ -25,12 +25,18 @@ examples = ["matplotlib", "numpy"]
 
 #==== Development ====#
 [tool.poetry.group.dev.dependencies]
-jupyter = "^1.1.1"
-ipython = "^9.5.0"
-pudb = "^2025.1"
+jupyter = "^1.1.1" # Example development
+ipython = "^9.5.0" # Debugging
+pudb = "^2025.1" # Debugging
+pytest = "^8.4.1" # Tests
+mypy = "^1.17.1" # Type validation
+black = "^25.1.0" # Formatting
+## Docs
+sphinx = "^8.2.3"
+sphinx-book-theme = "1.1.4"
+
+[tool.poetry.group.ci.dependencies]
 pytest = "^8.4.1"
-black = "^25.1.0"
-mypy = "^1.17.1"
 
 #==== Test tools ====#
 [tool.black]
@@ -60,18 +66,9 @@ testpaths = ["earlysign"]
 norecursedirs = ["docs"]
 
 #==== CI ====#
-[tool.poetry.group.ci.dependencies]
-pytest = "^8.4.1"
-
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
-
-# Simplify publishing to TestPyPI
-[[tool.poetry.source]]
-name = "testpypi"
-url = "https://test.pypi.org/legacy/"
-priority = "explicit"
 
 [tool.poetry-dynamic-versioning]
 # Enable the plugin to derive the package version from Git metadata (tags) at build time.
@@ -80,3 +77,9 @@ vcs = "git" # Use Git for versioning
 style = "pep440" # PEP 440 compliant versioning style
 # Remove the "+..." local version part to avoid PyPI error
 format-jinja = "{%- if distance == 0 -%}{{ base }}{%- else -%}{{ base }}.post{{ distance }}{%- endif -%}"
+
+# Simplify publishing to TestPyPI
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/legacy/"
+priority = "explicit"
