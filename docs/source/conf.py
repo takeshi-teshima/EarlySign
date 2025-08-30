@@ -12,6 +12,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx_autodoc_typehints",
     "myst_parser",
+    "myst_nb",
     "sphinx_copybutton",
 ]
 templates_path = ["_templates"]

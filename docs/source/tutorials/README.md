@@ -1,5 +1,9 @@
 # Tutorials
 
-This folder contains tutorials and vignettes. See the safetests vignette:
+This folder contains tutorials and vignettes. The safetests vignette is included below.
 
-- safetests/vignette_1.ipynb
+```{toctree}
+maxdepth: 1
+
+safetests/vignette_1.ipynb
+```
