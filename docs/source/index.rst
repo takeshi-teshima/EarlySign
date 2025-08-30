@@ -14,17 +14,9 @@ Contents
    :maxdepth: 2
    :caption: Chapters
 
-   explanations/README.md
-   explanations/[wip]api_structure.md
-   explanations/methods/gst.md
-   explanations/methods/sprt.md
-   explanations/methods/stepped-wedge.md
-   explanations/methods/test-and-roll.md
-   explanations/methods/e-values.md
-   explanations/spending_function_plots/README.md
-   tutorials/README.md
-
-   explanations/README-ja.md
+   explanation/README.md
+   explanation/README-ja.md
+   tutorial/README.md
 
 Additional resources
 --------------------
