@@ -2,13 +2,16 @@
 
 ![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 ![Release](https://img.shields.io/badge/v1.0%20release-end%20of%202025-blue)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/earlysign?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/earlysign)
 
 # EarlySign
 
 <center>
-<img src="https://raw.githubusercontent.com/takeshi-teshima/EarlySign/refs/heads/main/docs/logo.png" width="50%"><br/>
+<img src="https://raw.githubusercontent.com/takeshi-teshima/EarlySign/refs/heads/main/docs/logo.png" width="80%"><br/>
 Early signs, faster decisions.
 </center>
+
+---
 
 ## What is this?
 

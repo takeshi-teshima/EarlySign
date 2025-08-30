@@ -10,16 +10,16 @@ repository = "https://github.com/takeshi-teshima/EarlySign"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-
-[tool.poetry.group.examples]
-optional = true
-
-[tool.poetry.group.examples.dependencies]
-numpy = ">=1.24"
-matplotlib = ">=3.7"
+numpy = {version = "^2.3.2", extras = ["examples"]}
+matplotlib = {version = "^3.10.6", extras = ["examples"]}
 
 [tool.poetry.group.ci.dependencies]
 poetry-dynamic-versioning = "^1.9.1"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.1.1"
+ipython = "^9.5.0"
+pudb = "^2025.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
