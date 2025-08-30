@@ -8,18 +8,55 @@ license = "Apache-2.0"
 homepage = "https://github.com/takeshi-teshima/EarlySign"
 repository = "https://github.com/takeshi-teshima/EarlySign"
 
+#==== Main repo dependencies ====#
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-numpy = {version = "^2.3.2", extras = ["examples"]}
-matplotlib = {version = "^3.10.6", extras = ["examples"]}
 
-[tool.poetry.group.ci.dependencies]
-poetry-dynamic-versioning = "^1.9.1"
+## Extra dependencies
+numpy = {version = "^2.3.2", optional = true}
+matplotlib = {version = "^3.10.6", optional = true}
 
+[tool.poetry.extras]
+examples = ["matplotlib", "numpy"]
+
+#==== Development ====#
 [tool.poetry.group.dev.dependencies]
 jupyter = "^1.1.1"
 ipython = "^9.5.0"
 pudb = "^2025.1"
+pytest = "^8.4.1"
+black = "^25.1.0"
+mypy = "^1.17.1"
+
+#==== Test tools ====#
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+exclude = '''
+/(\.|venv|\.venv|\.git|\.mypy_cache|\.pytest_cache|build|dist|\.venv)/
+'''
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+show_error_codes = true
+strict = true
+follow_imports = "silent"
+check_untyped_defs = true
+disallow_untyped_calls = false
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
+
+#==== CI ====#
+[tool.poetry.group.ci.dependencies]
+poetry-dynamic-versioning = "^1.9.1"
+pytest = "^8.4.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
