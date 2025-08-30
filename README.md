@@ -1,8 +1,10 @@
-[![PyPI version](https://img.shields.io/pypi/v/earlysign.svg)](https://pypi.org/project/earlysign/)
-
 ![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 ![Release](https://img.shields.io/badge/v1.0%20release-end%20of%202025-blue)
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/earlysign?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/earlysign)
+
+[![PyPI version](https://img.shields.io/pypi/v/earlysign.svg)](https://pypi.org/project/earlysign/)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/earlysign)
+
+[![TestPyPI version](https://img.shields.io/pypi/v/earlysign?label=test-pypi&pypiBaseUrl=https://test.pypi.org&color=lightgray)](https://test.pypi.org/project/earlysign/)
 
 # EarlySign
 
