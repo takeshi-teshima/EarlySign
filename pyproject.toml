@@ -73,6 +73,8 @@ norecursedirs = ["docs"]
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
+# Note: poetry-dynamic-versioning has a known issue in which it adds blank lines pyproject.toml, breaking dependency writes.
+# If that occurs, run `make format` and retry, or temporarily set `enable = false` under [tool.poetry-dynamic-versioning] before `poetry lock`.
 
 [tool.poetry-dynamic-versioning]
 # Enable the plugin to derive the package version from Git metadata (tags) at build time.
