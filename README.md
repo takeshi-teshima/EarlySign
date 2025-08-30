@@ -101,3 +101,22 @@ You can also find useful tutorial [here](docs/tutorials).
 - [R `'gsDesign'` Technical Manual](https://keaven.github.io/gsd-tech-manual/)
 - [Stata 19 Adaptive Designs](https://www.stata.com/bookstore/adaptive-designs-reference-manual/)
 - [R `'safestats'` package](https://cran.r-project.org/web/packages/safestats/safestats.pdf)
+### Other References
+- [R `'rpact'` package](https://www.rpact.org/)
+- [R `'ldbounds'` package](https://cran.r-project.org/web/packages/ldbounds/ldbounds.pdf)
+
+### Initial TODO
+- どんな統計量を使いたいか（これによってどんなデータを受け取れるかが変わる）
+  - Wald's Z
+  - Bernoulli two proportions
+- どんなシグナルを使いたいか（どんな決定領域定義を使うかも選択）
+  - GroupSequentialFutilitySignal(criterion=AsymptoticNormalBoundary())
+  - AnytimeValidEValueSignal(alpha)
+- 実験プロセスを流す機能
+- 実験の途中経過をレポートする機能
+- 上記の設定を設定ファイルから行える
+- 上記の途中経過を保存・再開できる
+- 既存パッケージのAPIを解析して，パラメーター類を分配
+- 既存パッケージのユースケースを調べて，内容とは別にまずAPIを定義付けていく
+- ExperimentBuilderを実装して，実験設計のプロセスを支援する
+- [x] PyPI

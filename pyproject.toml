@@ -11,6 +11,7 @@ repository = "https://github.com/takeshi-teshima/EarlySign"
 #==== Main repo dependencies ====#
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
+scipy = "^1.16.1"
 
 ## Extra dependencies
 numpy = {version = "^2.3.2", optional = true}
@@ -27,6 +28,8 @@ pudb = "^2025.1"
 pytest = "^8.4.1"
 black = "^25.1.0"
 mypy = "^1.17.1"
+numpy = "^2.3.2"
+scipy = "^1.11.2"
 
 #==== Test tools ====#
 [tool.black]
@@ -50,8 +53,10 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules"
+addopts = "--doctest-modules --pyargs -v"
 doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
+testpaths = ["earlysign"]
+norecursedirs = ["docs"]
 
 #==== CI ====#
 [tool.poetry.group.ci.dependencies]
