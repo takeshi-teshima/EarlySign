@@ -15,7 +15,6 @@ Contents
    :caption: Chapters
 
    explanations/README.md
-   introduction
    explanations/[wip]api_structure.md
    explanations/methods/gst.md
    explanations/methods/sprt.md
