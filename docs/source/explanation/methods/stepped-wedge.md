@@ -1,4 +1,4 @@
-### Stepped-Wedge Design
+# Stepped-Wedge Design
 **Safely roll out to all users in stages while correctly measuring the impact.**
 
 This design is for situations where a new feature is already planned for a full rollout, but a simultaneous launch is too risky. It involves dividing users into several groups and migrating them to the new feature in a randomized, staggered sequence.

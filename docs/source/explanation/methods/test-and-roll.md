@@ -1,4 +1,4 @@
-### Test and Roll Strategy
+# Test and Roll Strategy
 **Achieve the fastest tests and the safest rollouts in a single workflow.**
 
 This is a highly practical deployment strategy used by many web services. It consists of first running an A/B test on a small subset of users (the **Test** phase), and then progressively deploying the winning variant to all users (the **Roll** phase).

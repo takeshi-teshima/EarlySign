@@ -11,7 +11,6 @@ The API consists of the following types/classes.
         advice: continue
         status: signal detected
 
-```
 # Set the criteria
 Data (and relevant context) are Observation(s)
 
@@ -39,7 +38,6 @@ Assessment
 DecisionPolicy interprets those Signals and draws a Conclusion.
 
 Reporter summarizes and visualizes the sequence of events in the Experiment and the Conclusion.
-```
 
 from_config()
 from_problem_setup(ProblemSetup(metric='conversion_rate', kind='two_sample'))

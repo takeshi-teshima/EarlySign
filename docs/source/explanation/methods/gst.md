@@ -1,4 +1,4 @@
-### Group Sequential Tests
+# Group Sequential Tests
 **Terminate futile experiments early with planned interim analyses.**
 
 This is a classic and powerful method where you pre-define several points for "interim analysis" during the experiment (e.g., every week, every 1000 users). At each point, you evaluate for statistical significance or futility (i.e., concluding that continuing the test is unlikely to yield a significant result).

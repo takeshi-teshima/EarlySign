@@ -3,15 +3,12 @@ import math
 from typing import Optional
 
 
-# (phi helpers moved into OBrienFlemingSpending class)
-
-
 class BaseSpendingFunction(ABC):
     """Minimal base class for alpha-spending functions.
 
-    Subclasses implement `cumulative(t)` returning the cumulative alpha spent
-    at information fraction t in [0, 1]. The base class enforces a simple alpha
-    check and provides `incremental` and `__call__` helpers.
+    Subclasses implement `_cumulative(t)` returning the (possibly unchecked)
+    cumulative alpha spent at information fraction t in [0, 1]. The base class
+    validates inputs and clips outputs to [0, alpha].
     """
 
     def __init__(self, alpha: float):
@@ -24,21 +21,16 @@ class BaseSpendingFunction(ABC):
 
     @abstractmethod
     def _cumulative(self, t: float) -> float:
-        """Compute the raw cumulative spending at t (no checking/clipping).
-
-        Subclasses implement this. `cumulative` wrapper will validate t and
-        clip the result to [0, self.alpha].
-        """
+        """Compute the raw cumulative spending at t (no checking/clipping)."""
 
     def cumulative(self, t: float) -> float:
         """Validate t, call subclass `_cumulative`, and clip to valid range."""
         t = self._check_t(t)
         val = float(self._cumulative(t))
-        # clip to [0, alpha] succinctly
         return min(max(val, 0.0), float(self.alpha))
 
     def incremental(self, t_prev: float, t: float) -> float:
-        """Alpha spent between t_prev and t (t_prev <= t)."""
+        """Alpha spent between t_prev and t (requires t_prev <= t)."""
         t_prev = self._check_t(t_prev)
         t = self._check_t(t)
         if t < t_prev:
@@ -61,7 +53,7 @@ class BaseSpendingFunction(ABC):
 class OBrienFlemingSpending(BaseSpendingFunction):
     """O'Brien-Fleming type spending function.
 
-    cumulative(t) = 2 * (1 - Phi(z_{1-alpha/2} / sqrt(t)))  for t>0, else 0
+    cumulative(t) = 2 * (1 - Phi(z_{1-alpha/2} / sqrt(t))) for t > 0, else 0
     where Phi is the standard normal CDF and z_{1-alpha/2} is its quantile.
     """
 
@@ -72,10 +64,7 @@ class OBrienFlemingSpending(BaseSpendingFunction):
 
     @staticmethod
     def _phi_ppf(p: float) -> float:
-        """Inverse of the standard normal CDF (approximation by Acklam).
-
-        Accurate enough for typical alpha values used in testing.
-        """
+        """Inverse of the standard normal CDF (approximation by Acklam)."""
         if not 0.0 < p < 1.0:
             raise ValueError("p must be in (0,1)")
 
@@ -110,42 +99,40 @@ class OBrienFlemingSpending(BaseSpendingFunction):
             3.754408661907416e00,
         ]
 
-        # Define break-points.
         plow = 0.02425
-        phigh = 1 - plow
+        phigh = 1.0 - plow
 
         if p < plow:
             q = math.sqrt(-2 * math.log(p))
-            num = ((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]
-            den = (((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1
-            return num / den
+            num = (((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]
+            num = num * q + c[5]
+            den = (((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1.0
+            return float(num / den)
 
         if p > phigh:
-            q = math.sqrt(-2 * math.log(1 - p))
-            num = ((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]
-            den = (((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1
-            return -(num / den)
+            q = math.sqrt(-2 * math.log(1.0 - p))
+            num = (((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]
+            num = num * q + c[5]
+            den = (((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1.0
+            return float(-(num / den))
 
         q = p - 0.5
         r = q * q
-        num = (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q
-        den = ((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1
-        return num / den
+        num = ((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]
+        num = num * q
+        den = (((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]
+        den = den * r + 1.0
+        return float(num / den)
 
     def _cumulative(self, t: float) -> float:
         if t == 0.0:
             return 0.0
-        z = type(self)._phi_ppf(1.0 - self.alpha / 2.0)
-        val = 2.0 * (1.0 - type(self)._phi(z / math.sqrt(t)))
-        return val
+        z = float(type(self)._phi_ppf(1.0 - self.alpha / 2.0))
+        return float(2.0 * (1.0 - float(type(self)._phi(z / math.sqrt(t)))))
 
 
 class HwangShihDeCaniSpending(BaseSpendingFunction):
-    """Hwang-Shih-DeCani spending function with parameter gamma.
-
-    alpha*(t) = alpha * (1 - exp(-gamma * t)) / (1 - exp(-gamma))
-    For gamma -> 0 this reduces to linear spending alpha * t.
-    """
+    """Hwang-Shih-DeCani spending function with parameter gamma."""
 
     def __init__(self, alpha: float, gamma: Optional[float] = None):
         super().__init__(alpha)
@@ -153,7 +140,6 @@ class HwangShihDeCaniSpending(BaseSpendingFunction):
 
     def _cumulative(self, t: float) -> float:
         g = self.gamma
-        # If gamma is exactly zero, this reduces to linear spending
         if g == 0.0:
             return self.alpha * t
         denom = 1.0 - math.exp(-g)
@@ -170,4 +156,5 @@ class KimDeMetsSpending(BaseSpendingFunction):
         self.rho = float(rho)
 
     def _cumulative(self, t: float) -> float:
-        return self.alpha * (t**self.rho)
+        result = float(self.alpha) * float(t) ** float(self.rho)
+        return float(result)

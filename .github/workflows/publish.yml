@@ -25,7 +25,6 @@ jobs:
       run: |
         uv venv
         uv pip install poetry
-        uv pip install poetry-dynamic-versioning
 
     - name: Build package
       run: |

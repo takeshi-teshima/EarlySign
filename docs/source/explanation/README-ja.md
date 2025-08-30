@@ -2,7 +2,7 @@
 
 Catch the early signs, reach faster conclusions.
 
-![./logo.png](./logo.png)
+<img src="https://raw.githubusercontent.com/takeshi-teshima/EarlySign/refs/heads/main/docs/logo.png" width="80%"><br/>
 
 EarlySign は、A/Bテストや統計的モニタリングにおける意思決定を加速するためのPythonライブラリです。実験が完全に終了するのを待つことなく、データが示す「早期のサイン」を統計的に正しく捉え、より速く、確信のある結論を導き出します。
 
