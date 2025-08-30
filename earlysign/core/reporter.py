@@ -3,8 +3,8 @@
 Example (doctest):
 >>> from earlysign.core.interface import SignalEvent, Signal, Recommendation
 >>> from earlysign.core.reporter import Reporter
->>> e = SignalEvent(time=1, condition_name='c1', signal=Signal.CONDITION_MET)
->>> r = Reporter([e])
+>>> dummy_signal = SignalEvent(time=1, condition_name='c1', signal=Signal.CONDITION_MET)
+>>> r = Reporter([dummy_signal])
 >>> 'Total Signal Events' in r.generate_summary()
 True
 >>> r.get_recommendation() == Recommendation.CONSIDER_STOPPING
