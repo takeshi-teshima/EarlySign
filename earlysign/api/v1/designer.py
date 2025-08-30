@@ -8,7 +8,7 @@ from earlysign.core.interface import (
     Condition,
 )
 from earlysign.core.runner import SequentialTest
-from earlysign.stats.proportions.proportion_statistics import TwoSampleZStatisticApprox
+from earlysign.stats.proportions.statistics import TwoSampleZStatisticApprox
 from earlysign.stats.common.condition import AlphaSpendingCondition
 from earlysign.stats.common.group_sequential.helpers import obrien_fleming_spending
 

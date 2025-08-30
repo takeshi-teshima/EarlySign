@@ -64,7 +64,7 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 
 [tool.pytest.ini_options]
-addopts = "--doctest-modules --pyargs -v"
+addopts = "--import-mode=importlib --doctest-modules --pyargs -v"
 doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
 testpaths = ["earlysign"]
 norecursedirs = ["docs"]
