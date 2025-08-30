@@ -3,6 +3,8 @@ import sys
 
 # Put project root on sys.path so autodoc can import the package if needed
 sys.path.insert(0, os.path.abspath("../.."))
+# Ensure local docs extensions are importable
+sys.path.insert(0, os.path.abspath("."))
 
 project = "EarlySign"
 extensions = [
@@ -11,6 +13,8 @@ extensions = [
     "sphinx_autodoc_typehints",
     "myst_parser",
     "sphinx_copybutton",
+    # local extension to auto-generate a toctree for files not referenced
+    # "auto_toc",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []
